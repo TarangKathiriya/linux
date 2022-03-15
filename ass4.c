@@ -7,25 +7,25 @@
 int main()
 {
 
-int fd,len;
-int x;
+	int fd,len;
+	int x;
 
-char read_buf[60];
-char write_buf[60]="Linux Kernel new programm?";
+	char read_buf[60];
+	char write_buf[60]="Linux Kernel new programm?";
 
-fd = open ("abc.txt",O_CREAT |O_RDWR,0777); //open and read write
+	fd = open ("abc.txt",O_CREAT |O_RDWR,0777); //open and read write
 
-len = write(fd,write_buf,60);
-printf("data from buffer %d\n",len);
+	len = write(fd,write_buf,60);
+	printf("data from buffer %d\n",len);
 
-lseek(fd,0,SEEK_SET); //To reposition of pointer
+	lseek(fd,0,SEEK_SET); //To reposition of pointer
 
-if(fd<0)
-printf("File is not there");
+	if(fd<0)
+	printf("File is not there");
 
-read(fd,read_buf,len);//read from buffeer
-printf("data from buffer %s\n",read_buf);
+	read(fd,read_buf,len);//read from buffeer
+	printf("data from buffer %s\n",read_buf);
 
-close(fd);
-return 0;
+	close(fd);
+	return 0;
 }

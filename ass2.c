@@ -3,25 +3,29 @@
 #include<sys/types.h>
 #include<sys/stat.h>
 #include<unistd.h>
+
 int main()
 {
-int fd,len;
-int x;
-char read_buf[60];
-char write_buf[60]="Linux Kernel new programm?";
-
-fd = open ("abc.txt",O_CREAT |O_RDWR,0777); //open and read write
-
-len = write(fd,write_buf,60);
-printf("data from buffer %d\n",len);
-
-lseek(fd,0,SEEK_SET); //To reposition of pointer
-if(fd<0)
-printf("File is not there");
-
-read(fd,read_buf,len);//read from buffeer
-printf("data from buffer %s\n",read_buf);
-
-close(fd);
-return 0;
+	int fd,len;
+	
+	char writebuf[300]="hello, how are you.";
+	char readbuf[300];
+	
+	fd=open("linuxkernal.txt",O_CREAT|O_RDWR,777);
+	len = write(fd,writebuf,300);
+	printf("return value of write option:%d\n",len);
+	
+	printf("SEEK_SET:%ld\n",lseek(fd,0,SEEK_SET));
+	
+	lseek(fd,4,SEEK_SET);
+	printf("SEEK_CURR:%ld\n",lseek(fd,0,SEEK_CUR));
+	
+	
+	printf("SEEK_END:%ld\n",lseek(fd,0,SEEK_END));
+	
+	read(fd,readbuf,len);
+	printf("data from buffer: %s\n",readbuf);
+	
+	close(fd);
+	return 0;		
 }
